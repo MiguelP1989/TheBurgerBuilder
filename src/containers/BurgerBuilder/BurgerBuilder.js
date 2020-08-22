@@ -74,6 +74,16 @@ class BurgerBuilder extends React.Component {
 
 
     render() {
+
+        const disableInfo = {
+            ...this.state.ingredients
+        }
+        for ( let key in disableInfo) {
+            disableInfo[key] = disableInfo[key] <= 0
+            // value of each key (return true or false) {salad: true, meat: false ...}
+        }
+
+        console.log("disableInfo", disableInfo);
         
 
         return (
@@ -82,7 +92,8 @@ class BurgerBuilder extends React.Component {
                 <BuildControls 
                 ingredientsAdded={this.addIngredientHandler}
                 ingredientsRemoved={this.removeIngredientHandler}
-                price={this.state.totalPrice}/>
+                price={this.state.totalPrice}
+                disabled={disableInfo}/>
             </Aux>
         )
 
