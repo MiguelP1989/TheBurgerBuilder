@@ -4,10 +4,6 @@ import classes from "./Backdrop.css"
 
 
 const backdrop = (props) => {
-
-    console.log("props in backdro", props);
-    
-
     return (
     props.show ?
     <div 
