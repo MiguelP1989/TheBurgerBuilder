@@ -39,8 +39,11 @@ class BurgerBuilder extends React.Component {
             return acc + el
         }, 0)
 
+        // console.log("suuuum", sum);
+        
+
         this.setState({
-            purchaseable: sum > 0
+            purchaseable: sum > 0 
         })
         
 
@@ -94,7 +97,7 @@ class BurgerBuilder extends React.Component {
             ingredients: updatedIngredients,
             totalPrice: newPrice
         })
-        
+        this.updatePurchaseState(updatedIngredients)
     }
 
     purchaseHandler = () => {
