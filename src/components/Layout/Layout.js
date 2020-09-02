@@ -28,7 +28,7 @@ import SideDrawer from "../Navigation/SideDrawer/SideDrawer"
      render() {
          return (
             <Aux>
-            <Toolbar  open={this.sideDrawerOpenHandler}></Toolbar>
+            <Toolbar  clicked={this.sideDrawerOpenHandler}></Toolbar>
             <SideDrawer
             open={this.state.showSideDrawer}
             closed={this.sideDrawerClosedHandler}/>
