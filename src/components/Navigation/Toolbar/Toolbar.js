@@ -5,10 +5,12 @@ import Logo from "../../../components/Logo/Logo"
 import NavigationItems from "../../../components/Navigation/NavigationItems/NavigationItems"
 
 
-const toolbar = () => {
+const toolbar = (props) => {
     return  (
     <header className={classes.ToolBar}>
-        <div>Menu</div>
+        <div 
+        onClick={props.open}
+        style={{cursor: "pointer"}}>Menu</div>
         <div className={classes.Logo}>
         <Logo/>
         </div>
