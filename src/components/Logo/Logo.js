@@ -4,11 +4,11 @@ import classes from "./Logo.css"
 import burgerLogo from "../../assets/images/burger.png"
 
 
-const logo = () => {
+const logo = (props) => {
 
         return (
             <div className={classes.Logo}>
-                <img src={burgerLogo} alt="My burger"></img>
+                <img src={burgerLogo} alt="My burger" ></img>
             </div>
         )
 }

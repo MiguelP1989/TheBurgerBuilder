@@ -5,6 +5,7 @@
     border-radius: 0 0 30px 30px;
     box-shadow: inset -15px 0 #c15711;
     margin: 2% auto;
+    
 }
 
 .BreadTop {
@@ -15,6 +16,7 @@
     box-shadow: inset -15px 0 #c15711;
     margin: 2% auto;
     position: relative;
+    z-index: -1;
 }
 
 .Seeds1 {
