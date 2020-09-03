@@ -1,0 +1,28 @@
+.Box {
+    background-color: #D39952;
+    display: flex;
+    justify-content: center;  
+    padding: 20px;
+}
+
+
+.Loader {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: 0.5rem solid white;
+    border-radius: 50%;
+    border-top: 0.5rem solid green;
+    width: 2rem;
+    height: 2rem;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
