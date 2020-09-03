@@ -1,6 +1,8 @@
 import React from "react"
-import Aux from "../../hoc/Aux"
 
+import axios from "../../axios-orders"
+
+import Aux from "../../hoc/Aux"
 import Burger from "../../components/Burger/Burger"
 import BuildControls from "../../components/Burger/BuildControls/BuildControls"
 import Modal from "../../components/UI/Modal/Modal"
@@ -113,7 +115,32 @@ class BurgerBuilder extends React.Component {
     }
 
     purchaseContinueHandler = () => {
-      alert("you will continue..!!")
+    // alert("you will continue..!!")
+    // endpoint - anyname.json
+    const order = {
+        ingredients: this.state.ingredients,
+        price: this.state.totalPrice,
+        customer: {
+            name: "Miguel",
+            address: {
+                street: 'teste street',
+                zipCode: '4321',
+                country: 'Germany'
+            },
+            email: 'teste@hotmail.com'
+        },
+        deliveryMethod: 'fastest'
+    }
+
+    axios.post('/orders.json', order)
+    .then(resp => {
+        console.log("resp in order", resp);
+    })
+    .catch(err => {
+        console.log("err in order", err);
+        
+    })
+        
     }
 
 
