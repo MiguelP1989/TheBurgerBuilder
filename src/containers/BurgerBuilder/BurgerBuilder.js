@@ -30,6 +30,8 @@ class BurgerBuilder extends React.Component {
 
 
     componentDidMount = () => {
+        console.log("this.props in componentdidmount", this.props);
+        
         axios.get('/ingredients.json')
         .then(resp => {
             // console.log("resp", resp);
@@ -129,41 +131,43 @@ class BurgerBuilder extends React.Component {
 
     purchaseContinueHandler = () => {
 
-    this.setState({ loading: true })
+    // this.setState({ loading: true })
     // alert("you will continue..!!")
     // endpoint - any name.json
-    const order = {
-        ingredients: this.state.ingredients,
-        price: this.state.totalPrice,
-        customer: {
-            name: "Miguel",
-            address: {
-                street: 'teste street',
-                zipCode: '4321',
-                country: 'Germany'
-            },
-            email: 'teste@hotmail.com'
-        },
-        deliveryMethod: 'fastest'
-    }
+    // const order = {
+    //     ingredients: this.state.ingredients,
+    //     price: this.state.totalPrice,
+    //     customer: {
+    //         name: "Miguel",
+    //         address: {
+    //             street: 'teste street',
+    //             zipCode: '4321',
+    //             country: 'Germany'
+    //         },
+    //         email: 'teste@hotmail.com'
+    //     },
+    //     deliveryMethod: 'fastest'
+    // }
 
-    axios.post('/orders.json', order)
-    .then(resp => {
-        console.log("resp in order", resp);
-        this.setState({ 
-            loading: false,
-            purchasing: false
-         })
-    })
-    .catch(err => {
-        console.log("err in order", err);
-        this.setState({ 
-            loading: false, 
-            purchasing: false // to close the modal
-        })
+    // axios.post('/orders.json', order)
+    // .then(resp => {
+    //     console.log("resp in order", resp);
+    //     this.setState({ 
+    //         loading: false,
+    //         purchasing: false
+    //      })
+    // })
+    // .catch(err => {
+    //     console.log("err in order", err);
+    //     this.setState({ 
+    //         loading: false, 
+    //         purchasing: false // to close the modal
+    //     })
         
-    })
-        
+    // })
+
+    console.log("burger builder", this.props);
+    this.props.history.push("/checkout")
     }
 
 
