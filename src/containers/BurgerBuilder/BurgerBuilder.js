@@ -167,7 +167,23 @@ class BurgerBuilder extends React.Component {
     // })
 
     console.log("burger builder", this.props);
-    this.props.history.push("/checkout")
+
+    const queryParams = []
+
+    for (let i in this.state.ingredients) {
+        console.log("i", i);
+        console.log("this.state.ingredients", this.state.ingredients);
+        
+        
+        queryParams.push(encodeURIComponent(i) + "=" + encodeURIComponent(this.state.ingredients[i]))
+    }
+    console.log("queryParams", queryParams);
+    
+    const queryString = queryParams.join("&")
+    this.props.history.push({
+        pathname: "/checkout",
+        search: "?" + queryString
+    })
     }
 
 
