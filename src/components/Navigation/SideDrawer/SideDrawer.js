@@ -23,7 +23,7 @@ const sideDrawer = (props) => {
         </div>
    
         <nav>
-            <NavigationItems/>
+            <NavigationItems clicked={props.closed} />
 
         </nav>
       
