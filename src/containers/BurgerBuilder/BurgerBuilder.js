@@ -130,54 +130,16 @@ class BurgerBuilder extends React.Component {
     }
 
     purchaseContinueHandler = () => {
-
-    // this.setState({ loading: true })
-    // alert("you will continue..!!")
-    // endpoint - any name.json
-    // const order = {
-    //     ingredients: this.state.ingredients,
-    //     price: this.state.totalPrice,
-    //     customer: {
-    //         name: "Miguel",
-    //         address: {
-    //             street: 'teste street',
-    //             zipCode: '4321',
-    //             country: 'Germany'
-    //         },
-    //         email: 'teste@hotmail.com'
-    //     },
-    //     deliveryMethod: 'fastest'
-    // }
-
-    // axios.post('/orders.json', order)
-    // .then(resp => {
-    //     console.log("resp in order", resp);
-    //     this.setState({ 
-    //         loading: false,
-    //         purchasing: false
-    //      })
-    // })
-    // .catch(err => {
-    //     console.log("err in order", err);
-    //     this.setState({ 
-    //         loading: false, 
-    //         purchasing: false // to close the modal
-    //     })
-        
-    // })
-
-    console.log("burger builder", this.props);
+    // console.log("burger builder", this.props);
 
     const queryParams = []
 
     for (let i in this.state.ingredients) {
-        console.log("i", i);
-        console.log("this.state.ingredients", this.state.ingredients);
-        
-        
-        queryParams.push(encodeURIComponent(i) + "=" + encodeURIComponent(this.state.ingredients[i]))
+    queryParams.push(encodeURIComponent(i) + "=" + encodeURIComponent(this.state.ingredients[i]))
     }
-    console.log("queryParams", queryParams);
+    // to be able to have the TotalPrice in the checkout page
+    queryParams.push('price=' + this.state.totalPrice)
+    // console.log("queryParams", queryParams);
     
     const queryString = queryParams.join("&")
     this.props.history.push({
