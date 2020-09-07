@@ -1,4 +1,5 @@
 import React, { Component }from 'react';
+import {Route, Switch} from "react-router-dom"
 
 import Layout from "../src/components/Layout/Layout"
 import BurguerBuilder from "./containers/BurgerBuilder/BurgerBuilder"
@@ -12,8 +13,13 @@ class App  extends Component {
     return (
       <div>
       <Layout>
-        <BurguerBuilder/>
-        <Checkout/>
+        <Switch>
+        <Route path="/" component={BurguerBuilder}/>
+        <Route path="/checkout" component={Checkout}/>
+        </Switch>
+
+        {/* <BurguerBuilder/>
+        <Checkout/> */}
       </Layout>
      </div>
     )
