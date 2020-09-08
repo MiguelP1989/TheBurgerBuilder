@@ -2,8 +2,9 @@ import React from "react"
 
 import classes from "./Order.css"
 
-const order = (props) => {
+import Button from "../UI/Button/Button"
 
+const order = (props) => {
     const ingredients = []
 
     //converting obj in an array
@@ -31,11 +32,13 @@ const order = (props) => {
     })
 
     return (
+        
         <div className={classes.Order}>
             
             <p>Ingredients: <br></br>
                 {ingredientOutput}</p>
             <p>Price: <strong>£ {Number.parseFloat(props.price).toFixed(2)}</strong></p>
+           
         </div>
     )
 

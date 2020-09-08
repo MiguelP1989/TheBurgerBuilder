@@ -11,9 +11,21 @@
 .Input {
     display: block;
     margin-bottom: 6px;
-    padding: 5px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
     
     
+}
+.Input:focus {
+    outline: none;
+    background-color: #ccc;
+}
+
+.Label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
 }
 
 .Form {
