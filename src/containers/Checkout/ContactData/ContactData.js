@@ -76,22 +76,29 @@ class ContactData extends React.Component {
                 valid: false,
                 touched: false
             },
-            deliveryMethod: ''
+            deliveryMethod: {
+                valid: true,
+                value: "Fastest"
+            }
+           
+        
         },
-            loading: false
+            loading: false,
+            formIsValid: false,
+            errorMessage: [],
+            // error: false
     
              }
 
-    orderHandler = async e => {
+        orderHandler = async e => {
         e.preventDefault()
         
-        //acessing the values
+        
         const formData = {} 
         for (let formElementIdent in this.state.orderForm) {
             formData[formElementIdent] = this.state.orderForm[formElementIdent].value
         }
 
-        console.log("formData", formData);
         
         const order = {
         ingredients: this.props.ingredients,
@@ -99,8 +106,6 @@ class ContactData extends React.Component {
         orderData: formData
        
         }
-
-      
 
         try {
             this.setState({ loading: true })
@@ -116,31 +121,28 @@ class ContactData extends React.Component {
     
     }
 
-    checkValidaty = (value, rules) => {
+        checkValidaty = (value, rules) => {
+
+        if (!rules) {
+            return true
+        }
         let isValid = true 
 
         if (rules.required) {
             isValid = value.trim() !== "" && isValid
         }
-
         if (rules.minLength) {
             isValid = value.length >= rules.minLength && isValid
         }
-
         if (rules.maxLength) {
             isValid = value.length <= rules.maxLength && isValid
         }
-        
-
-
-
         return isValid
     }
 
 
     handleChange = (event, inputidentifier) => {
-        // console.log(event.target.value);
-        // console.log('inputidentifier', inputidentifier);
+  
         const updatedOrderForm = {
             ...this.state.orderForm
         }
@@ -152,14 +154,32 @@ class ContactData extends React.Component {
        console.log("updatedFromElement", updatedFromElement);
        
        updatedOrderForm[inputidentifier] = updatedFromElement
-    //    console.log("updatedFromElement", updatedOrderForm);
-       
-        
+    
+    
+    let formIsValid = true
+    for (let inputidentifier in updatedOrderForm) {
+     formIsValid = updatedOrderForm[inputidentifier].valid && formIsValid
+    }
+
+    this.setState({
+        orderForm : updatedOrderForm, 
+        formIsValid: formIsValid
+    })
+
+
+    let errorMessage = ""
+    if (!updatedFromElement.value) {
+        errorMessage = "Field Required. "
+
         this.setState({
-            orderForm : updatedOrderForm
-        })
-       
-        
+            errorMessage: errorMessage
+        }) 
+    } else {
+        this.setState({
+            errorMessage: "" 
+        }) 
+
+    }
 
     }
 
@@ -170,7 +190,6 @@ class ContactData extends React.Component {
       const formElementsArray = []
 
       for (let key in this.state.orderForm) {
-        //   console.log("key", key);
           formElementsArray.push({
               id: key,
               config: this.state.orderForm[key]
@@ -199,7 +218,10 @@ class ContactData extends React.Component {
 
                       
                     ))}
-              
+                    
+                    <p style={{color: "tomato"}}>{this.state.errorMessage}</p>
+                    
+                   
 
                     <label className={classes.Label}>Select a delivery method:</label>
                     <select 
@@ -212,6 +234,7 @@ class ContactData extends React.Component {
     
                     
                     <Button 
+                    disable={!this.state.formIsValid}
                     btnType="Success">ORDER</Button>
                 </form>
                 }
