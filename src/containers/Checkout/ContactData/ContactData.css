@@ -35,9 +35,7 @@
     margin: auto;
 }
 
-.Invalid {
-    border: 1px solid tomato
-}
+
 
 @media (min-width: 600px) {
     .ContactData {

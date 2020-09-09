@@ -19,7 +19,8 @@ class ContactData extends React.Component {
                 validation: {
                     required: true
                 },
-                valid: false
+                valid: false,
+                touched: false
             },
             street: {
                 elementType: 'input',
@@ -31,7 +32,8 @@ class ContactData extends React.Component {
                 validation: {
                     required: true
                 },
-                valid: false
+                valid: false,
+                touched: false
             },
             zipCode: {
                 elementType: 'input',
@@ -45,7 +47,8 @@ class ContactData extends React.Component {
                     minLength: 5,
                     maxLength: 5
                 },
-                valid: false
+                valid: false,
+                touched: false
             },
             country: {
                 elementType: 'input',
@@ -57,7 +60,8 @@ class ContactData extends React.Component {
                 validation: {
                     required: true
                 },
-                valid: false
+                valid: false,
+                touched: false
             },
             email: {
                 elementType: 'input',
@@ -69,7 +73,8 @@ class ContactData extends React.Component {
                 validation: {
                     required: true
                 },
-                valid: false
+                valid: false,
+                touched: false
             },
             deliveryMethod: ''
         },
@@ -95,10 +100,7 @@ class ContactData extends React.Component {
        
         }
 
-        if (this.isFormEmpty(this.state)) {
-            // this.setState({reuired: true})
-            return
-        } 
+      
 
         try {
             this.setState({ loading: true })
@@ -146,6 +148,7 @@ class ContactData extends React.Component {
 
        updatedFromElement.value = event.target.value
        updatedFromElement.valid = this.checkValidaty(updatedFromElement.value, updatedFromElement.validation)
+       updatedFromElement.touched = true
        console.log("updatedFromElement", updatedFromElement);
        
        updatedOrderForm[inputidentifier] = updatedFromElement
@@ -163,11 +166,7 @@ class ContactData extends React.Component {
 
 
     render() {
-        const inputClasses = [classes.Input]
-        if (this.state.required) {
-              inputClasses.push(classes.Invalid)
-        
-    }
+      
       const formElementsArray = []
 
       for (let key in this.state.orderForm) {
@@ -190,8 +189,9 @@ class ContactData extends React.Component {
                     {formElementsArray.map(formElement => (
          
                      <Input 
+                    invalid={!formElement.config.valid}
+                    touched={formElement.config.touched}
                     key={formElement.id}
-                    className={inputClasses.join(' ')}
                     elementType={formElement.config.elementType}
                     elementConfig={formElement.config.elementConfig} 
                     value={formElement.config.value}
