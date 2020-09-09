@@ -4,11 +4,10 @@
     text-align: center;
     box-shadow: 0 2px 3px #ccc;
     border: 1px solid #eee;
-    padding: 10px;
     box-sizing: border-box;
 }
 
-.Input {
+/* .Input {
     display: block;
     margin-bottom: 6px;
     padding: 10px;
@@ -20,7 +19,7 @@
 .Input:focus {
     outline: none;
     background-color: #ccc;
-}
+} */
 
 .Label {
     font-weight: bold;
@@ -34,6 +33,10 @@
     flex-direction: column;
     width: 60%;
     margin: auto;
+}
+
+.Invalid {
+    border: 1px solid tomato
 }
 
 @media (min-width: 600px) {
