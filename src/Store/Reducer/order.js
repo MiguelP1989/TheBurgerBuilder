@@ -9,8 +9,6 @@ const initialState = {
 const reducer = (state = initialState, action) => {
 
     if (action.type == actionTypes.PURCHASE_BURGER_SUCCESS) {
-
-        console.log(action);
         const newOrder = {
             ...action.orderData,
             id: action.orderId

@@ -78,7 +78,7 @@ const mapStateToProps = state => {
     console.log('state', state);
     
     return  {
-        ings: state.ingredients,
+        ings: state.ingredientsReducer.ingredients,
         // totalPrice: state.totalprice
     }
 }

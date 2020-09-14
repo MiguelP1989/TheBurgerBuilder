@@ -212,9 +212,9 @@ const mapStateToProps = state => {
     console.log(state);
     
     return {
-        ings: state.ingredients,
-        totalPrice: state.totalPrice,
-        error: state.error
+        ings: state.ingredientsReducer.ingredients,
+        totalPrice: state.ingredientsReducer.totalPrice,
+        error: state.ingredientsReducer.error
     }
 }
 

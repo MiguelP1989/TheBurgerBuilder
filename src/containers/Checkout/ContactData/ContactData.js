@@ -104,6 +104,10 @@ class ContactData extends React.Component {
             formData[formElementIdent] = this.state.orderForm[formElementIdent].value
         }
 
+       
+        console.log("form data", formData);
+        
+        
         
         const order = {
         ingredients: this.props.ings,
@@ -150,19 +154,27 @@ class ContactData extends React.Component {
 
 
     handleChange = (event, inputidentifier) => {
-  
+
+       
+
         const updatedOrderForm = {
             ...this.state.orderForm
         }
        const updatedFromElement = { ...updatedOrderForm[inputidentifier] }
 
        updatedFromElement.value = event.target.value
+
+      
+       
        updatedFromElement.valid = this.checkValidaty(updatedFromElement.value, updatedFromElement.validation)
        updatedFromElement.touched = true
-       console.log("updatedFromElement", updatedFromElement);
+      
        
        updatedOrderForm[inputidentifier] = updatedFromElement
+
     
+
+
     
     let formIsValid = true
     for (let inputidentifier in updatedOrderForm) {
@@ -234,9 +246,9 @@ class ContactData extends React.Component {
                     <label className={classes.Label}>Select a delivery method:</label>
                     <select 
                     name="deliveryMethod" 
-                    onChange={this.handleChange}>
-                        <option name="Fastest">Fastest</option>
-                        <option name="Cheapest">Cheapest</option>
+                    onChange={(e) => this.handleChange(e)}>
+                        <option value="Fastest">Fastest</option>
+                        <option value="Cheapest">Cheapest</option>
                   
                     </select>
     
@@ -256,9 +268,9 @@ class ContactData extends React.Component {
 const mapStateToProps = state => {
     
     return  {
-        ings: state.ingredients,
-        totalPrice: state.totalPrice,
-        loading: state.loading
+        ings: state.ingredientsReducer.ingredients,
+        totalPrice: state.ingredientsReducer.totalPrice,
+        loading: state.orderReducer.loading
       
 
     }
