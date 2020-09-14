@@ -59,7 +59,7 @@ class Checkout extends React.Component {
                 {...props}/>
                 )}/> */}
 
-<Route 
+                <Route 
                 path={this.props.match.path + "/contact-data"}
                 component={ContactData}/>
             </div>

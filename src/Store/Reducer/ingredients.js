@@ -2,7 +2,7 @@ import * as actionTypes from "../Actions/actionTypes"
 
 
 const initialstate = {
-    ingredients: false,
+    ingredients: {},
     totalPrice: 0,
     error: false
    
@@ -43,9 +43,16 @@ const reducer = (state = initialstate, action) => {
     }
 
     if (action.type == actionTypes.SET_INGREDIENTS) {
+        console.log("Action", action);
+        
         return {
             ...state,
-            ingredients: action.ingredients,
+            ingredients: { /// placing ingredients in order
+                salad: action.ingredients.salad,
+                bacon: action.ingredients.bacon,
+                cheese: action.ingredients.cheese,
+                meat: action.ingredients.meat
+            },
             error: false
         }
         
