@@ -1,12 +1,10 @@
+import * as actionTypes from "../Actions/actionTypes"
+
 
 const initialstate = {
-    ingredients: {
-        salad: 0,
-        bacon: 0,
-        cheese: 0,
-        meat: 0
-    },
+    ingredients: false,
     totalPrice: 0,
+    error: false
    
 }
 
@@ -20,7 +18,7 @@ const ingredientPrices = {
 
 const reducer = (state = initialstate, action) => {
 
-    if (action.type == "ADD_INGREDIENT") {
+    if (action.type == actionTypes.ADD_INGREDIENT) {
         console.log(action);
         return {
             ...state,
@@ -32,7 +30,7 @@ const reducer = (state = initialstate, action) => {
         }
     }
 
-    if (action.type == "REMOVE_INGREDIENT") {
+    if (action.type == actionTypes.REMOVE_INGREDIENT) {
         return  {
             ...state,
             ingredients: {
@@ -43,6 +41,25 @@ const reducer = (state = initialstate, action) => {
         }
 
     }
+
+    if (action.type == actionTypes.SET_INGREDIENTS) {
+        return {
+            ...state,
+            ingredients: action.ingredients,
+            error: false
+        }
+        
+    }
+
+    if (action.type == actionTypes.FETCH_INGREDIENTS_FAILED) {
+        console.log("ACTION", action);
+        return {
+            ...state,
+            error: true
+        }
+        
+    }
+
     return state
 
 }

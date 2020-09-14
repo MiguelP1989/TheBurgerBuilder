@@ -12,6 +12,8 @@ import Spinner from "../../components/UI/Spinner/Spinner"
 
 import withErrorHandler from "../../hoc/WithErrorHandler/WithErrorHandler"
 
+import * as actionCreators from "../../Store/Actions/index"
+
 // const ingredientPrices = {
 //     salad: 0.5,
 //     cheese: 0.4,
@@ -31,6 +33,7 @@ class BurgerBuilder extends React.Component {
 
 
     componentDidMount = () => {
+        this.props.setIngredients()
         // console.log("this.props in componentdidmount", this.props);
         
         // axios.get('/ingredients.json')
@@ -164,7 +167,7 @@ class BurgerBuilder extends React.Component {
             // value of each key (return true or false) {salad: true, meat: false ...}
         }
 
-      
+       
 
         return (
             <Aux> 
@@ -181,9 +184,12 @@ class BurgerBuilder extends React.Component {
            
                 </Modal>
                 
-                {!this.props.ings ? 
-                <Spinner/> :
-                  <Burger ingredients={this.props.ings}/>
+                {this.props.error ? 
+                <p>INGREDIENTS CAN'T BE LOADED</p> : 
+                !this.props.ings  ? 
+                <Spinner/>  :
+                  <Burger ingredients={this.props.ings}/> 
+                  
                 }
                  {!this.props.ings ? 
                  null :
@@ -207,14 +213,16 @@ const mapStateToProps = state => {
     
     return {
         ings: state.ingredients,
-        totalPrice: state.totalPrice
+        totalPrice: state.totalPrice,
+        error: state.error
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return  {
         onIngredientAdded: (ingName) => dispatch({type: "ADD_INGREDIENT", ingredientName: ingName}),
-        onIngredientRemoved: (ingName) => dispatch({type: "REMOVE_INGREDIENT", ingredientName: ingName})
+        onIngredientRemoved: (ingName) => dispatch({type: "REMOVE_INGREDIENT", ingredientName: ingName}),
+        setIngredients: () => dispatch(actionCreators.initIngredients())
     }
 }
 
