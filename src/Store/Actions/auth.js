@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes"
 import axios from "axios"
 
-import { key } from "../../keys"
+import { key } from "../../key/keys"
 
 
 export const authStart = () => {
