@@ -222,7 +222,8 @@ const mapDispatchToProps = (dispatch) => {
     return  {
         onIngredientAdded: (ingName) => dispatch({type: "ADD_INGREDIENT", ingredientName: ingName}),
         onIngredientRemoved: (ingName) => dispatch({type: "REMOVE_INGREDIENT", ingredientName: ingName}),
-        setIngredients: () => dispatch(actionCreators.initIngredients())
+        setIngredients: () => dispatch(actionCreators.initIngredients()),
+
     }
 }
 

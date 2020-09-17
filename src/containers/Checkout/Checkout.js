@@ -9,6 +9,8 @@ import ContactData from "./ContactData/ContactData"
 
 
 
+
+
 class Checkout extends React.Component {
     state = {
         // ingredients: null,
@@ -32,7 +34,7 @@ class Checkout extends React.Component {
 //             ingredients: ingredients, totalPrice: price
 //     })
 // }
-
+  
 
     checkoutCancelledHandendler = () => {
         this.props.history.goBack()
@@ -43,9 +45,14 @@ class Checkout extends React.Component {
     }
 
     render() {
+
+       
+
         return (
             
             <div>
+            
+                
                 {Object.keys(this.props.ings).length == 0 ? <Redirect to="/"/> :
                 <div>
                          <CheckoutSummary 
@@ -75,12 +82,17 @@ class Checkout extends React.Component {
 }
 
 const mapStateToProps = state => {
-    console.log('state', state);
+    console.log('state in checkout', state);
     
     return  {
         ings: state.ingredientsReducer.ingredients,
         // totalPrice: state.totalprice
+
+        
     }
 }
+
+
+
 
 export default connect(mapStateToProps)(Checkout)

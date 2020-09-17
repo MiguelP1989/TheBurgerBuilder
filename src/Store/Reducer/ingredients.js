@@ -18,7 +18,7 @@ const ingredientPrices = {
 
 const reducer = (state = initialstate, action) => {
 
-    if (action.type == actionTypes.ADD_INGREDIENT) {
+    if (action.type === actionTypes.ADD_INGREDIENT) {
         console.log(action);
         return {
             ...state,
@@ -30,7 +30,7 @@ const reducer = (state = initialstate, action) => {
         }
     }
 
-    if (action.type == actionTypes.REMOVE_INGREDIENT) {
+    if (action.type === actionTypes.REMOVE_INGREDIENT) {
         return  {
             ...state,
             ingredients: {
@@ -42,7 +42,7 @@ const reducer = (state = initialstate, action) => {
 
     }
 
-    if (action.type == actionTypes.SET_INGREDIENTS) {
+    if (action.type === actionTypes.SET_INGREDIENTS) {
         console.log("Action", action);
         
         return {
@@ -53,12 +53,13 @@ const reducer = (state = initialstate, action) => {
                 cheese: action.ingredients.cheese,
                 meat: action.ingredients.meat
             },
-            error: false
+            error: false,
+            totalPrice: 0
         }
         
     }
 
-    if (action.type == actionTypes.FETCH_INGREDIENTS_FAILED) {
+    if (action.type === actionTypes.FETCH_INGREDIENTS_FAILED) {
         console.log("ACTION", action);
         return {
             ...state,

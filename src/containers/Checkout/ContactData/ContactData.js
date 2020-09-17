@@ -9,7 +9,9 @@ import withErrorHandler from "../../../hoc/WithErrorHandler/WithErrorHandler"
 
 import {connect} from "react-redux"
 
-import * as actionsCreator from "../../../Store/Actions/index"
+
+import * as actionCreator from "../../../Store/Actions/index"
+import { Redirect } from "react-router-dom"
 
 class ContactData extends React.Component {
     state = {
@@ -118,7 +120,13 @@ class ContactData extends React.Component {
 
         this.props.onOrderBurger(order)
         this.props.history.push("/")
+       
+   
 
+        
+        
+     
+    
         // try {
         //     this.setState({ loading: true })
         //     const resp = await axios.post('/orders.json', order)
@@ -163,23 +171,20 @@ class ContactData extends React.Component {
        const updatedFromElement = { ...updatedOrderForm[inputidentifier] }
 
        updatedFromElement.value = event.target.value
-
-      
-       
        updatedFromElement.valid = this.checkValidaty(updatedFromElement.value, updatedFromElement.validation)
        updatedFromElement.touched = true
-      
-       
        updatedOrderForm[inputidentifier] = updatedFromElement
 
     
 
-
-    
+   
     let formIsValid = true
     for (let inputidentifier in updatedOrderForm) {
      formIsValid = updatedOrderForm[inputidentifier].valid && formIsValid
+        
     }
+
+    
 
     this.setState({
         orderForm : updatedOrderForm, 
@@ -217,8 +222,14 @@ class ContactData extends React.Component {
       }
 
 
+
         return (
+
+           
+            
             <div className={classes.ContactData}>
+                
+                
                 <h4>Enter your Contact Data</h4>
                 {this.props.loading ? <Spinner/> : 
                 <form 
@@ -270,7 +281,8 @@ const mapStateToProps = state => {
     return  {
         ings: state.ingredientsReducer.ingredients,
         totalPrice: state.ingredientsReducer.totalPrice,
-        loading: state.orderReducer.loading
+        loading: state.orderReducer.loading,
+
       
 
     }
@@ -278,7 +290,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return  {
-        onOrderBurger: (orderData) => dispatch(actionsCreator.purchaseBurgerStart(orderData))
+        onOrderBurger: (orderData) => dispatch(actionCreator.purchaseBurgerStart(orderData)),
+        
     }
 }
 
