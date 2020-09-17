@@ -166,7 +166,7 @@ render () {
                 <Button
                     clicked={this.switchAuthModeHandler}
                     btnType="Danger">
-                {this.state.isSignup ? "SIGNIN" : 'SIGNUP'}
+                {this.state.isSignup ? "Already Signup? SIGNIN" : " Don't you have an account? SIGNUP "}
                 </Button>
         </div>
     )

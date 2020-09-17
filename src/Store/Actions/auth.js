@@ -1,11 +1,9 @@
 import * as actionTypes from "./actionTypes"
 import axios from "axios"
 
-<<<<<<< HEAD
+
 import { key } from "../../key/key"
-=======
-import { key } from "../../key/keys"
->>>>>>> 76e892c129fd123bcbb7979c20dadc058a191137
+
 
 
 export const authStart = () => {
@@ -14,10 +12,11 @@ export const authStart = () => {
     }
 }
 
-export const authSuccess = (authData) => {
+export const authSuccess = (userId, token) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
-        authData: authData
+        userId: userId,
+        idToken: token
     }
 }
 
@@ -49,7 +48,7 @@ export const  auth =  (email, password, isSignup) => {
             const resp = await axios.post(url, data)  
             console.log(resp.data);
             
-            dispatch(authSuccess(resp.data))
+            dispatch(authSuccess(resp.data.idToken, resp.data.localId))
         } catch (err) {
             dispatch(authFail(err))
         }

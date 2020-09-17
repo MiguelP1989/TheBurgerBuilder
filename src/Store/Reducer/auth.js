@@ -1,7 +1,9 @@
 import * as actionTypes from "../Actions/actionTypes"
 
 const initialState = {
-    auth: [],
+    token: null,
+    userId: null,
+    error: null,
     loading: false
 
 }
@@ -11,7 +13,8 @@ const reducer = (state = initialState, action) => {
     if (action.type === actionTypes.AUTH_START) {
         return {
             ...state,
-            loading: true
+            loading: true,
+            error: null
         }
     }
 
@@ -20,18 +23,28 @@ const reducer = (state = initialState, action) => {
         console.log(action);
         
         return {
-            ...state
+            ...state,
+            token: action.idToken,
+            userId: action.userId,
+            error: null,
+            loading: false
+            
         }
     }
 
-    // if (action.type === actionTypes.AUTH_FAIL){
-    //     return {
-    //         ...state,
-    //         loading: false,
-    //         error: true
-    //     }
-    // }
+    if (action.type === actionTypes.AUTH_FAIL){
+        return {
+            ...state,
+            loading: false,
+            error: action.error
+        }
+    }
+
+    console.log(state);
     return state
+
+   
+    
 }
 
 export default reducer
