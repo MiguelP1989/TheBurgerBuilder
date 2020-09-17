@@ -46,11 +46,10 @@ export const  auth =  (email, password, isSignup) => {
         try {
             dispatch(authStart())
             const resp = await axios.post(url, data)  
-            console.log(resp.data);
-            
             dispatch(authSuccess(resp.data.idToken, resp.data.localId))
         } catch (err) {
-            dispatch(authFail(err))
+            // console.log(err.response.data.error.message);
+            dispatch(authFail(err.response.data.error.message))
         }
         
        
