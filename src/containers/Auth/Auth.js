@@ -41,7 +41,8 @@ state = {
         }
         
     },
-    formIsValid: false
+    formIsValid: false,
+    isSignup: true
 }
 
 checkValidity = (value, rules) => {
@@ -111,7 +112,15 @@ submitHandler = (e) => {
     let password = this.state.controls.password.value
 
     e.preventDefault()
-    this.props.onAuth(email, password)
+    this.props.onAuth(email, password, this.state.isSignup)
+}
+
+switchAuthModeHandler = () => {
+    this.setState(prevState => {
+        return {
+            isSignup: !prevState.isSignup
+        }
+    })
 }
 
 render () {
@@ -150,10 +159,15 @@ render () {
             <form  onSubmit={this.submitHandler}>
                 {form}
                 <Button 
-                disable={!this.state.formIsValid}
+                // disable={!this.state.formIsValid}
                 btnType="Success"
                >SUBMIT</Button>
             </form>
+                <Button
+                    clicked={this.switchAuthModeHandler}
+                    btnType="Danger">
+                {this.state.isSignup ? "SIGNIN" : 'SIGNUP'}
+                </Button>
         </div>
     )
 }
@@ -164,7 +178,7 @@ render () {
 const mapDispatchToProps = dispatch => {
 
     return {
-        onAuth: (email, password) => dispatch(actions.auth(email, password))
+        onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup))
     }
 }
 
