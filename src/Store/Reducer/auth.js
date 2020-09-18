@@ -20,7 +20,7 @@ const reducer = (state = initialState, action) => {
 
     if (action.type === actionTypes.AUTH_SUCCESS) {
 
-        console.log(action);
+        // console.log(action);
         
         return {
             ...state,
@@ -40,7 +40,16 @@ const reducer = (state = initialState, action) => {
         }
     }
 
-    console.log(state);
+    if (action.type === actionTypes.AUTH_LOGOUT) {
+        return  {
+            ...state,
+            token: null,
+            userID: null
+        }
+    }
+
+    
+    
     return state
 
    
