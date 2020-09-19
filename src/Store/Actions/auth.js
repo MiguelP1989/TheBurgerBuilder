@@ -12,7 +12,7 @@ export const authStart = () => {
     }
 }
 
-export const authSuccess = (userId, token) => {
+export const authSuccess = (token, userId) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         userId: userId,
@@ -39,7 +39,7 @@ export const checkAuthTimeout = (expirationTime) => {
     return dispatch => {
         setTimeout(() => {
             dispatch(logout())
-        }, expirationTime)
+        }, expirationTime * 1000)
     }
 }
 

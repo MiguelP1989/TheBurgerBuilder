@@ -15,7 +15,8 @@ class Orders extends React.Component {
     // }
 
 componentDidMount = () => {
-        this.props.onFetchOrder()
+        this.props.onFetchOrder(this.props.token)
+
  
    
     // axios.get("/orders.json")
@@ -60,14 +61,15 @@ const mapStateToProps = (state) => {
     return  {
         orders: state.orderReducer.orders,
         loading: state.orderReducer.loading,
-        error: state.orderReducer.error
+        error: state.orderReducer.error,
+        token: state.authReducer.token
         
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return  {
-        onFetchOrder: () => dispatch(actions.fetchtOrders()),
+        onFetchOrder: (token) => dispatch(actions.fetchtOrders(token)),
 
 
     }

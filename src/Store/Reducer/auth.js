@@ -19,9 +19,6 @@ const reducer = (state = initialState, action) => {
     }
 
     if (action.type === actionTypes.AUTH_SUCCESS) {
-
-        // console.log(action);
-        
         return {
             ...state,
             token: action.idToken,

@@ -118,7 +118,7 @@ class ContactData extends React.Component {
        
         }
 
-        this.props.onOrderBurger(order)
+        this.props.onOrderBurger(this.props.token, order)
         this.props.history.push("/")
        
    
@@ -282,6 +282,7 @@ const mapStateToProps = state => {
         ings: state.ingredientsReducer.ingredients,
         totalPrice: state.ingredientsReducer.totalPrice,
         loading: state.orderReducer.loading,
+        token: state.authReducer.token
 
       
 
@@ -290,7 +291,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return  {
-        onOrderBurger: (orderData) => dispatch(actionCreator.purchaseBurgerStart(orderData)),
+        onOrderBurger: (token, orderData) => dispatch(actionCreator.purchaseBurgerStart(token, orderData)),
         
     }
 }

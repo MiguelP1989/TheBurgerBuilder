@@ -18,11 +18,12 @@ export const purchaseBurgerFail = (error) => {
 }
 
 
-export const purchaseBurgerStart = (orderData) => {
+export const purchaseBurgerStart = (token, orderData) => {
     return async dispatch => {
+            
             dispatch(purchaseBurguer())
         try {
-            const resp = await axios.post('/orders.json', orderData)
+            const resp = await axios.post('/orders.json?auth=' + token, orderData)
             console.log('resp.data', resp.data.name) // id;
             
             dispatch(purchaseBurgerSuccess(resp.data.name, orderData))
@@ -74,12 +75,16 @@ export const fetchOrdersStart = () => {
 
 
 
-export const fetchtOrders = () => {
-    return async dispatch => {
+export const fetchtOrders =  (token) => {
+    console.log("token", token);
+    
+    // or we could get the token if we use getState()
+    return  async dispatch => {
 
         try {
             dispatch(fetchOrdersStart())
-           const resp = await axios.get("/orders.json")
+           const resp = await axios.get('/orders.json?auth=' + token)
+           console.log("respond in orders", resp);
            const fetchOrders = []
            for (let key in resp.data) { 
                fetchOrders.push({
@@ -87,7 +92,7 @@ export const fetchtOrders = () => {
                    ...resp.data[key]
                }) 
            }
-           console.log("respond in orders", resp);
+       
            dispatch(fetchOrdersSuccess(fetchOrders))
            
         } catch (err) {
@@ -95,48 +100,5 @@ export const fetchtOrders = () => {
             dispatch(fetchOrdersFail(err))
             
         }
-    //  axios.get("/orders.json")
-    // .then(resp => {
-    // // console.log("resp in orders", resp.data);
-    // const fetchOrders = []
-    // for (let key in resp.data) { 
-    //     fetchOrders.push({
-    //         id: key,
-    //         ...resp.data[key]
-    //     }) 
-    // }
-    // this.setState({ loading: false, orders: fetchOrders
-    // })
-    // })
-    // .catch(err => { this.setState({ loading: false })
-    // })
-    // }
+    }
 }
-}
-
-
-// export const setIngredients = (ingredients) => {
-//     return {
-//         type: actionTypes.SET_INGREDIENTS,
-//         ingredients: ingredients
-//     }
-// }
-
-// export const fetchIngredientsFailed = () => {
-//     return {
-//         type: actionTypes.FETCH_INGREDIENTS_FAILED
-//     }
-// }
-
-// export const initIngredients = () => {
-//     return dispatch => {
-//          axios.get('/ingredients.json')
-//         .then(resp => {
-//             // console.log("resp", resp);
-//            dispatch(setIngredients(resp.data))
-//         })
-//         .catch(error => {
-//             dispatch(fetchIngredientsFailed())
-//         })
-
-//     }
