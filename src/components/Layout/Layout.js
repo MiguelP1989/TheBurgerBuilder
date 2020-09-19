@@ -1,4 +1,5 @@
 import React from "react"
+import {connect} from "react-redux"
 
 import Aux from "../../hoc/Aux"
 import classes from "./Layout.css"
@@ -28,8 +29,11 @@ import SideDrawer from "../Navigation/SideDrawer/SideDrawer"
      render() {
          return (
             <Aux>
-            <Toolbar  clicked={this.sideDrawerOpenHandler}></Toolbar>
+            <Toolbar  
+                isAuth={this.props.isAuthenticated}
+                clicked={this.sideDrawerOpenHandler}></Toolbar>
             <SideDrawer
+            isAuth={this.props.isAuthenticated}
             open={this.state.showSideDrawer}
             closed={this.sideDrawerClosedHandler}/>
         <div>Toolbar, sideDrawer, Backdrop</div>
@@ -41,5 +45,11 @@ import SideDrawer from "../Navigation/SideDrawer/SideDrawer"
      }
  } 
 
+ const mapstateToProps = state => {
+     return  {
+         isAuthenticated: state.authReducer.token !== null
+     }
+ }
 
-export default Layout;
+
+export default connect(mapstateToProps)(Layout);

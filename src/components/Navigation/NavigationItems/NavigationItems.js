@@ -21,13 +21,22 @@ const navigationItems = (props) => {
                 to="/orders"
                 >Orders</NavLink>
             </li>
+            {!props.isAuthenticated ? 
             <li className={classes.NavigationItem}>
                 <NavLink 
                 onClick={props.clicked}   
                 activeClassName={classes.active}
                 to="/auth"
                 >Login</NavLink>
+            </li> :
+            <li className={classes.NavigationItem}>
+                <NavLink 
+                onClick={props.clicked}   
+                activeClassName={classes.active}
+                to="/Logout"
+                >Logout</NavLink>
             </li>
+}
         </ul>
     )
 }

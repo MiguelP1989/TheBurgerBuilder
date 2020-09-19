@@ -8,6 +8,9 @@ import Aux from "../../../hoc/Aux"
 
 const sideDrawer = (props) => {
 
+    console.log("SIDE DROWER PROPS", props);
+    
+
     let attachedClasses = [classes.SideDrawer, classes.Close]
 
     if (props.open) {
@@ -23,7 +26,9 @@ const sideDrawer = (props) => {
         </div>
    
         <nav>
-            <NavigationItems clicked={props.closed} />
+            <NavigationItems 
+            isAuthenticated={props.isAuth}
+            clicked={props.closed} />
 
         </nav>
       
