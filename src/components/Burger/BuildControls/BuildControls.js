@@ -2,6 +2,7 @@ import React from "react"
 
 import classes from "./BuildControls.css"
 import BuildControl from "./BuildControl/BuildControl"
+import {Redirect} from "react-router-dom"
 
 
 
@@ -15,8 +16,16 @@ const controls = [
 
 const buildControls = (props) => {
 
+    let authRedirect = null
+
+    if (!props.isAuth) {
+        authRedirect = <Redirect to="/auth"/>
+
+    }
+
     return (
         <div className={classes.BuildControls}>
+            
         <p>Current Price: <strong>{props.price.toFixed(2)}</strong> £</p>
        {controls.map(ctrl => {
           return  (  
@@ -34,7 +43,7 @@ const buildControls = (props) => {
          className={classes.OrderButton}
          onClick={props.ordered}
          >
-             ORDER NOW
+            {props.isAuth ?  'ORDER NOW' : 'SIGN UP TO PURCHASE'}
          </button> :
          null
     }

@@ -14,13 +14,14 @@ const navigationItems = (props) => {
                 to="/"
                 >Burger Builder</NavLink>
             </li>
+            {props.isAuthenticated ? 
             <li className={classes.NavigationItem}>
                 <NavLink 
                 onClick={props.clicked}   
                 activeClassName={classes.active}
                 to="/orders"
                 >Orders</NavLink>
-            </li>
+            </li> : null }
             {!props.isAuthenticated ? 
             <li className={classes.NavigationItem}>
                 <NavLink 
