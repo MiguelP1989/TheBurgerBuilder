@@ -4,7 +4,8 @@ import * as actionTypes from "../Actions/actionTypes"
 const initialstate = {
     ingredients: {},
     totalPrice: 0,
-    error: false
+    error: false,
+    building: false
    
 }
 
@@ -26,7 +27,8 @@ const reducer = (state = initialstate, action) => {
                 ...state.ingredients,
                 [action.ingredientName]: state.ingredients[action.ingredientName] + 1
             },
-            totalPrice: state.totalPrice + ingredientPrices[action.ingredientName]
+            totalPrice: state.totalPrice + ingredientPrices[action.ingredientName],
+            building: true
         }
     }
 
@@ -37,7 +39,9 @@ const reducer = (state = initialstate, action) => {
                 ...state.ingredients,
                 [action.ingredientName]: state.ingredients[action.ingredientName] - 1
             },
-            totalPrice: state.totalPrice - ingredientPrices[action.ingredientName]
+            totalPrice: state.totalPrice - ingredientPrices[action.ingredientName],
+            building: true
+
         }
 
     }
@@ -54,7 +58,8 @@ const reducer = (state = initialstate, action) => {
                 meat: action.ingredients.meat
             },
             error: false,
-            totalPrice: 0
+            totalPrice: 0,
+            building: false
         }
         
     }
