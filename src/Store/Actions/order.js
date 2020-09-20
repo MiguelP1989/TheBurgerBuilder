@@ -75,7 +75,7 @@ export const fetchOrdersStart = () => {
 
 
 
-export const fetchtOrders =  (token) => {
+export const fetchtOrders =  (token, userId) => {
     // console.log("token", token);
     
     // or we could get the token if we use getState()
@@ -83,7 +83,8 @@ export const fetchtOrders =  (token) => {
 
         try {
             dispatch(fetchOrdersStart())
-           const resp = await axios.get('/orders.json?auth=' + token)
+            const queryparams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
+            const resp = await axios.get('/orders.json' + queryparams)
         //    console.log("respond in orders", resp);
            const fetchOrders = []
            for (let key in resp.data) { 
