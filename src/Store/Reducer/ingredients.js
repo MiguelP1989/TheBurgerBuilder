@@ -47,7 +47,7 @@ const reducer = (state = initialstate, action) => {
     }
 
     if (action.type === actionTypes.SET_INGREDIENTS) {
-        console.log("Action", action);
+        // console.log("Action", action);
         
         return {
             ...state,
@@ -65,7 +65,7 @@ const reducer = (state = initialstate, action) => {
     }
 
     if (action.type === actionTypes.FETCH_INGREDIENTS_FAILED) {
-        console.log("ACTION", action);
+        // console.log("ACTION", action);
         return {
             ...state,
             error: true

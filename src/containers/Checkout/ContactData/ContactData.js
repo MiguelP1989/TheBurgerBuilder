@@ -107,7 +107,7 @@ class ContactData extends React.Component {
         }
 
        
-        console.log("form data", formData);
+        // console.log("form data", formData);
         
         
         

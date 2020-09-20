@@ -20,6 +20,7 @@ const reducer = (state = initialState, action) => {
     }
 
     if (action.type === actionTypes.AUTH_SUCCESS) {
+      
         return {
             ...state,
             token: action.idToken,
@@ -47,7 +48,7 @@ const reducer = (state = initialState, action) => {
     }
 
     if (action.type === actionTypes.SET_AUTH_REDIRECT) {
-        console.log("action in set_auth_redirect", action);
+        // console.log("action in set_auth_redirect", action);
         
         return {
             ...state,

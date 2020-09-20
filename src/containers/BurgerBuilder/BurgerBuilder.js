@@ -24,10 +24,10 @@ import * as actionCreators from "../../Store/Actions/index"
 class BurgerBuilder extends React.Component {
     state = {
         // ingredients: false,
-        totalPrice: 0,
+        // totalPrice: 0,
         // purchaseable: false,
         purchasing: false,
-        loading: false,
+        // loading: false,
        
     }
 
@@ -183,7 +183,7 @@ class BurgerBuilder extends React.Component {
                 {!this.state.loading ? 
                      <OrderSummary
                      ingredients={this.props.ings}
-                     price={this.state.totalPrice}
+                     price={this.props.totalPrice}
                      modalClosed={this.purchaseCancelHandler}
                      continuePurchase={this.purchaseContinueHandler}/>
                     : <Spinner/>}
