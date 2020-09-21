@@ -21,7 +21,7 @@ import * as actionCreators from "../../Store/Actions/index"
 //     bacon: 0.7
 // }
 
-class BurgerBuilder extends React.Component {
+export class BurgerBuilder extends React.Component {
     state = {
         // ingredients: false,
         // totalPrice: 0,
