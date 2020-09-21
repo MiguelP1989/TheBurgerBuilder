@@ -8,7 +8,7 @@ import ContactData from "./ContactData/ContactData"
 
 
 
-
+import * as actionCreator from "../../Store/Actions/index"
 
 
 class Checkout extends React.Component {
@@ -41,6 +41,7 @@ class Checkout extends React.Component {
     }
 
     checkoutContinueHandler = () => {
+        this.props.onContinueCheckOut()
         this.props.history.replace('/checkout/contact-data')
     }
 
@@ -86,13 +87,20 @@ const mapStateToProps = state => {
     
     return  {
         ings: state.ingredientsReducer.ingredients,
+        loading: state.orderReducer.loading
         // totalPrice: state.totalprice
 
         
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    return  {
+        onContinueCheckOut: () => dispatch(actionCreator.continueCheckout()),
+        
+    }
+}
 
 
 
-export default connect(mapStateToProps)(Checkout)
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout)

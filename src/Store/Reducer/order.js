@@ -58,7 +58,8 @@ const reducer = (state = initialState, action) => {
     if (action.type === actionTypes.FETCH_ORDERS_SUCCES) {
         return {
             ...state,
-            orders: action.orders
+            orders: action.orders,
+            
         }
     }
 
@@ -70,6 +71,12 @@ const reducer = (state = initialState, action) => {
         }
     }
 
+    if (action.type === actionTypes.CONTINUE_CHECKOUT) {
+        return  {
+            ...state,
+            loading: false
+        }
+    }
   
 
     return state

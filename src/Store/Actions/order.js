@@ -103,3 +103,12 @@ export const fetchtOrders =  (token, userId) => {
         }
     }
 }
+
+
+export const continueCheckout = () => {
+
+    return {
+        type: actionTypes.CONTINUE_CHECKOUT,
+        
+    }
+}

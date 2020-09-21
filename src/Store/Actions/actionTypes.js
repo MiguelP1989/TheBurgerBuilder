@@ -21,3 +21,7 @@ export const AUTH_FAIL = "AUTH_FAIL"
 export const AUTH_LOGOUT = "AUTH_LOGOUT"
 
 export const SET_AUTH_REDIRECT = "SET_AUTH_REDIRECT"
+
+
+
+export const CONTINUE_CHECKOUT = "CONTINUE_CHECKOUT"
